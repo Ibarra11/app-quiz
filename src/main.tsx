@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Root from "./routes/root";
-import Home from "./components/home";
+import Index from "./routes";
 
-import { loader as homeLoader } from "./components/home";
+import { loader as indexLoader } from "./routes/index";
 import Quiz from "./routes/quiz";
 
 const router = createBrowserRouter([
@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root />,
     children: [
-      { index: true, element: <Home />, loader: homeLoader },
+      { index: true, element: <Index />, loader: indexLoader },
       {
         path: "/quiz/:quizId",
         element: <Quiz />,

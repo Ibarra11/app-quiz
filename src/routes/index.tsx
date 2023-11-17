@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import data from "../data.json";
-import QuizList from "./QuizList";
+import QuizList from "../components/QuizList";
 export async function loader() {
   const quizList: { title: string; icon: string }[] = data.quizzes.map(
     ({ title, icon }: { title: string; icon: string }) => ({ title, icon })
@@ -10,7 +10,7 @@ export async function loader() {
 
 export type QuizList = Awaited<ReturnType<typeof loader>>;
 
-export default function Home() {
+export default function Index() {
   const { quizList } = useLoaderData() as QuizList;
   return (
     <div className="space-y-10">
