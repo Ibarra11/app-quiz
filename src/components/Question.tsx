@@ -36,13 +36,15 @@ export default function Question({
   const [answer, setAnswer] = React.useState<null | string>(null);
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
     if (status !== "idle") {
       nextQuestion();
     } else if (answer) {
       handleResponse(answer);
     }
   }
+
+  console.log(questionNumber);
+  console.log(numberOfQuestions);
 
   return (
     <div>
@@ -138,7 +140,11 @@ export default function Question({
           ))}
         </ul>
         <button className="bg-purple h-14 text-white text-lg font-medium w-full rounded-xl">
-          {status === "idle" ? "Submit Answer" : "Next Question"}
+          {status === "idle"
+            ? "Submit Answer"
+            : questionNumber === numberOfQuestions
+              ? "Finish Quiz"
+              : "Next Question"}
         </button>
       </form>
     </div>

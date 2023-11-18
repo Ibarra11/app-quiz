@@ -1,7 +1,8 @@
-import { useLoaderData, type Params } from "react-router-dom";
+import { useLoaderData, type Params, useParams } from "react-router-dom";
 import data from "../data.json";
 import React from "react";
 import Question from "../components/Question";
+import QuizScore from "../components/QuizScore";
 
 export async function loader({ params }: { params: Params<"quizId"> }) {
   return {
@@ -13,16 +14,22 @@ export async function loader({ params }: { params: Params<"quizId"> }) {
 export type Quiz = Awaited<ReturnType<typeof loader>>;
 
 export default function Quiz() {
+  const { quizId } = useParams();
+  const [score, setScore] = React.useState(0);
   const { questions } = useLoaderData() as Quiz;
   const [questionNumber, setQuestionNumber] = React.useState(0);
   const [status, setStatus] = React.useState<"idle" | "incorrect" | "correct">(
     "idle"
+  );
+  const [gameStatus, setGameStatus] = React.useState<"playing" | "complete">(
+    "playing"
   );
   const { question, answer, options } = questions[questionNumber];
 
   function handleResponse(response: string) {
     if (response === answer) {
       setStatus("correct");
+      setScore(score + 1);
     } else {
       setStatus("incorrect");
     }
@@ -32,10 +39,18 @@ export default function Quiz() {
     if (questionNumber < questions.length - 1) {
       setQuestionNumber(questionNumber + 1);
       setStatus("idle");
+    } else {
+      setGameStatus("complete");
     }
   }
 
-  return (
+  return gameStatus === "complete" ? (
+    <QuizScore
+      quizId={quizId!}
+      score={score}
+      numberOfQuestions={questions.length}
+    />
+  ) : (
     <Question
       numberOfQuestions={questions.length}
       options={options}
