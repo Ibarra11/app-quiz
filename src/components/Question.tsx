@@ -42,10 +42,6 @@ export default function Question({
       handleResponse(answer);
     }
   }
-
-  console.log(questionNumber);
-  console.log(numberOfQuestions);
-
   return (
     <div>
       <div className="space-y-3">
@@ -99,7 +95,7 @@ export default function Question({
                   className={clsx(
                     "grid place-content-center h-10 w-10 rounded-md mr-3",
                     {
-                      "bg-light-gray": status === "idle" && option !== answer,
+                      "bg-light-gray": option !== answer,
                       "bg-purple": status === "idle" && option === answer,
                       "bg-green": status === "correct" && option === answer,
                       "bg-red": status === "incorrect" && option === answer,
