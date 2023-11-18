@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { QuizList } from "./home";
+import type { QuizList } from "../routes";
 
 export default function QuizList({ quizList }: QuizList) {
   return (

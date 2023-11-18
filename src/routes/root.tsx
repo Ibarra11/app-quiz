@@ -6,7 +6,7 @@ export default function Root() {
 
   return (
     <div className="bg-mobile-dark bg-no-repeat h-screen bg-navy-300 ">
-      <div className="w-[320px] mx-auto">
+      <div className="min-w-[320px] mx-auto">
         <header className="flex justify-between py-4 px-6">
           <div className="flex gap-4 items-center">
             {params && params.quizId && (
