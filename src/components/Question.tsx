@@ -54,9 +54,17 @@ export default function Question({
             <li key={option}>
               <label
                 aria-label={option}
-                className={`relative flex items-center p-3 rounded-xl bg-navy-200 ${
-                  option === answer ? "outline outline-2 outline-purple" : ""
-                }`}
+                className={clsx(
+                  `relative flex items-center p-3 rounded-xl bg-navy-200`,
+                  {
+                    "outline outline-2 outline-purple":
+                      status === "idle" && option === answer,
+                    " outline outline-2 outline-green":
+                      status === "correct" && option === answer,
+                    " outline outline-2 outline-red":
+                      status === "incorrect" && option === answer,
+                  }
+                )}
               >
                 <input
                   className="appearance-none absolute inset-0 outline-none focus:ring-0 "
@@ -77,10 +85,12 @@ export default function Question({
                 />
                 <div
                   className={clsx(
-                    "grid place-content-center bg-light-gray h-10 w-10 rounded-md mr-3",
+                    "grid place-content-center h-10 w-10 rounded-md mr-3",
                     {
-                      "bg-light-gray": option !== answer,
-                      "bg-purple": option === answer,
+                      "bg-light-gray": status === "idle" && option !== answer,
+                      "bg-purple": status === "idle" && option === answer,
+                      "bg-green": status === "correct" && option === answer,
+                      "bg-red": status === "incorrect" && option === answer,
                     }
                   )}
                 >
