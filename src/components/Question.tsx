@@ -58,16 +58,21 @@ export default function Question({
                 }`}
               >
                 <input
-                  className="appearance-none absolute inset-0 outline-none focus:ring-0"
+                  className="appearance-none absolute inset-0 outline-none focus:ring-0 "
                   type="radio"
                   name="answer"
                   value={option}
-                  //   checked={answer === option}
-                  //   onChange={(e) => {
-                  //     if (status === "idle") {
-                  //       setAnswer(e.target.value);
-                  //     }
-                  //   }}
+                  checked={answer === option}
+                  onChange={(e) => {
+                    if (status === "idle") {
+                      setAnswer(e.target.value);
+                    }
+                  }}
+                  onFocus={(e) => {
+                    if (status === "idle") {
+                      setAnswer(e.target.value);
+                    }
+                  }}
                 />
                 <div className="grid place-content-center bg-light-gray h-10 w-10 rounded-md mr-3">
                   <p className="text-lg font-medium">
