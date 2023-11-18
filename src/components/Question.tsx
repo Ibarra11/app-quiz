@@ -1,6 +1,7 @@
 import React from "react";
 
 import * as Progress from "@radix-ui/react-progress";
+import clsx from "clsx";
 
 interface QuestionProps {
   question: string;
@@ -74,8 +75,21 @@ export default function Question({
                     }
                   }}
                 />
-                <div className="grid place-content-center bg-light-gray h-10 w-10 rounded-md mr-3">
-                  <p className="text-lg font-medium">
+                <div
+                  className={clsx(
+                    "grid place-content-center bg-light-gray h-10 w-10 rounded-md mr-3",
+                    {
+                      "bg-light-gray": option !== answer,
+                      "bg-purple": option === answer,
+                    }
+                  )}
+                >
+                  <p
+                    className={clsx("text-lg font-medium", {
+                      "text-navy-200": option !== answer,
+                      "text-white": option === answer,
+                    })}
+                  >
                     {String.fromCharCode(CHAR_CODE_FOR_A + i)}
                   </p>
                 </div>

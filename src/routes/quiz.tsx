@@ -13,11 +13,11 @@ export async function loader({ params }: { params: Params<"quizId"> }) {
 export type Quiz = Awaited<ReturnType<typeof loader>>;
 
 export default function Quiz() {
+  const { questions } = useLoaderData() as Quiz;
   const [questionNumber, setQuestionNumber] = React.useState(0);
   const [status, setStatus] = React.useState<"idle" | "incorrect" | "correct">(
     "idle"
   );
-  const { questions } = useLoaderData() as Quiz;
   const { question, answer, options } = questions[questionNumber];
 
   function handleResponse(response: string) {
