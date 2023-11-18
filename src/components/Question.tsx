@@ -1,9 +1,10 @@
 import React from "react";
-
 import * as Progress from "@radix-ui/react-progress";
 import clsx from "clsx";
 import IconCorrect from "../assets/icon-correct.svg";
 import IconIncorrect from "../assets/icon-incorrect.svg";
+
+import Button from "./Button";
 
 const IconStatus = {
   correct: IconCorrect,
@@ -135,13 +136,13 @@ export default function Question({
             </li>
           ))}
         </ul>
-        <button className="bg-purple h-14 text-white text-lg font-medium w-full rounded-xl">
+        <Button>
           {status === "idle"
             ? "Submit Answer"
             : questionNumber === numberOfQuestions
               ? "Finish Quiz"
               : "Next Question"}
-        </button>
+        </Button>
       </form>
     </div>
   );

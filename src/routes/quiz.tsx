@@ -44,11 +44,19 @@ export default function Quiz() {
     }
   }
 
+  function resetQuiz() {
+    setGameStatus("playing");
+    setScore(0);
+    setQuestionNumber(0);
+    setStatus("idle");
+  }
+
   return gameStatus === "complete" ? (
     <QuizScore
       quizId={quizId!}
       score={score}
       numberOfQuestions={questions.length}
+      resetQuiz={resetQuiz}
     />
   ) : (
     <Question
