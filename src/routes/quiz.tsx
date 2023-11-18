@@ -44,6 +44,7 @@ export default function Quiz() {
       questionNumber={questionNumber + 1}
       question={question}
       nextQuestion={nextQuestion}
+      correctAnswer={answer}
     />
   );
 }

@@ -2,9 +2,17 @@ import React from "react";
 
 import * as Progress from "@radix-ui/react-progress";
 import clsx from "clsx";
+import IconCorrect from "../assets/icon-correct.svg";
+import IconIncorrect from "../assets/icon-incorrect.svg";
+
+const IconStatus = {
+  correct: IconCorrect,
+  incorrect: IconIncorrect,
+} as const;
 
 interface QuestionProps {
   question: string;
+  correctAnswer: string;
   options: string[];
   questionNumber: number;
   numberOfQuestions: number;
@@ -17,6 +25,7 @@ const CHAR_CODE_FOR_A = "A".charCodeAt(0);
 
 export default function Question({
   question,
+  correctAnswer,
   status,
   handleResponse,
   options,
@@ -34,6 +43,7 @@ export default function Question({
       handleResponse(answer);
     }
   }
+
   return (
     <div>
       <div className="space-y-3">
@@ -104,6 +114,25 @@ export default function Question({
                   </p>
                 </div>
                 <p className="text-lg text-white font-medium">{option}</p>
+                {status === "incorrect" && option === answer && (
+                  <img
+                    className="block ml-auto h-6 w-6"
+                    src={IconStatus["incorrect"]}
+                  />
+                )}
+                {status === "incorrect" && option === correctAnswer && (
+                  <img
+                    className="block ml-auto h-6 w-6"
+                    src={IconStatus["correct"]}
+                  />
+                )}
+
+                {status === "correct" && option === answer && (
+                  <img
+                    className="block ml-auto h-6 w-6"
+                    src={IconStatus["correct"]}
+                  />
+                )}
               </label>
             </li>
           ))}
