@@ -7,7 +7,7 @@ export default function Root() {
   return (
     <div className="bg-mobile-dark bg-no-repeat h-screen bg-navy-300 ">
       <div className="min-w-[320px] mx-auto space-y-8 max-w-6xl px-6 py-4 md:space-y-9 md:pt-10 md:px-16 lg:pt-20 lg:space-y-16 lg:px-0">
-        <header className="flex items-center justify-between px-6">
+        <header className="flex items-center justify-between">
           <div className="flex gap-4 items-center">
             {params && params.quizId && (
               <>
