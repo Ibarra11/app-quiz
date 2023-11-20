@@ -3,6 +3,7 @@ import data from "../data.json";
 import React from "react";
 import Question from "../components/Question";
 import QuizScore from "../components/QuizScore";
+import AnswerList from "../components/AnswerList";
 
 export async function loader({ params }: { params: Params<"quizId"> }) {
   return {
@@ -18,40 +19,40 @@ export default function Quiz() {
   const [score, setScore] = React.useState(0);
   const { questions } = useLoaderData() as Quiz;
   const [questionNumber, setQuestionNumber] = React.useState(0);
-  const [status, setStatus] = React.useState<"idle" | "incorrect" | "correct">(
-    "idle"
-  );
-  const [gameStatus, setGameStatus] = React.useState<"playing" | "complete">(
+  const [answerStatus, setAnswerStatus] = React.useState<
+    "idle" | "incorrect" | "correct"
+  >("idle");
+  const [quizStatus, setQuizStatus] = React.useState<"playing" | "over">(
     "playing"
   );
   const { question, answer, options } = questions[questionNumber];
 
   function handleResponse(response: string) {
     if (response === answer) {
-      setStatus("correct");
+      setAnswerStatus("correct");
       setScore(score + 1);
     } else {
-      setStatus("incorrect");
+      setAnswerStatus("incorrect");
     }
   }
 
   function nextQuestion() {
     if (questionNumber < questions.length - 1) {
       setQuestionNumber(questionNumber + 1);
-      setStatus("idle");
+      setAnswerStatus("idle");
     } else {
-      setGameStatus("complete");
+      setQuizStatus("over");
     }
   }
 
   function resetQuiz() {
-    setGameStatus("playing");
+    setQuizStatus("playing");
     setScore(0);
     setQuestionNumber(0);
-    setStatus("idle");
+    setAnswerStatus("idle");
   }
 
-  return gameStatus === "complete" ? (
+  return quizStatus === "over" ? (
     <QuizScore
       quizId={quizId!}
       score={score}
@@ -61,13 +62,17 @@ export default function Quiz() {
   ) : (
     <Question
       numberOfQuestions={questions.length}
-      options={options}
-      handleResponse={handleResponse}
-      status={status}
       questionNumber={questionNumber + 1}
       question={question}
-      nextQuestion={nextQuestion}
-      correctAnswer={answer}
-    />
+    >
+      <AnswerList
+        handleResponse={handleResponse}
+        nextQuestion={nextQuestion}
+        correctAnswer={answer}
+        options={options}
+        answerStatus={answerStatus}
+        quizStatus={quizStatus}
+      />
+    </Question>
   );
 }
