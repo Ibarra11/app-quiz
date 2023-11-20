@@ -168,7 +168,7 @@ function CompletionBar({
       className="relative bg-navy-200 h-4 rounded-full overflow-hidden p-1"
     >
       <Progress.Indicator
-        className="bg-white  h-full rounded-full  transition-all duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]"
+        className="bg-purple  h-full rounded-full  transition-all duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]"
         style={{ width: `${progress}%` }}
       />
     </Progress.Root>
