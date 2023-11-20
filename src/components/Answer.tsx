@@ -18,7 +18,7 @@ export default function Answer({
 }: {
   option: string;
   selectedAnswer: string | null;
-  answerStatus: "idle" | "correct" | "incorrect";
+  answerStatus: "idle" | "correct" | "incorrect" | "error";
   correctAnswer: string;
   handleAnswerChange: (answer: string) => void;
   letter: string;
@@ -26,13 +26,14 @@ export default function Answer({
   return (
     <li>
       <label
-        // aria-label={option}
+        aria-label={option}
         className={clsx(
           `relative flex gap-3 items-center p-3 rounded-xl bg-navy-200 md:gap-8 md:pr-4 lg:py-5 lg:px-6`,
           {
             "outline outline-2 outline-purple":
-              answerStatus === "idle" && option === selectedAnswer,
-            " outline outline-2 outline-green":
+              (answerStatus === "idle" || answerStatus === "error") &&
+              option === selectedAnswer,
+            "outline outline-2 outline-green":
               answerStatus === "correct" && option === selectedAnswer,
             " outline outline-2 outline-red":
               answerStatus === "incorrect" && option === selectedAnswer,
@@ -46,12 +47,12 @@ export default function Answer({
           value={option}
           checked={selectedAnswer === option}
           onChange={(e) => {
-            if (answerStatus === "idle") {
+            if (answerStatus === "idle" || answerStatus === "error") {
               handleAnswerChange(e.target.value);
             }
           }}
           onFocus={(e) => {
-            if (answerStatus === "idle") {
+            if (answerStatus === "idle" || answerStatus === "error") {
               handleAnswerChange(e.target.value);
             }
           }}
@@ -61,7 +62,9 @@ export default function Answer({
             "grid place-content-center h-10 w-10 rounded-md mr-3 md:mr-8 md:h-14 md:w-14",
             {
               "bg-light-gray": option !== selectedAnswer,
-              "bg-purple": answerStatus === "idle" && option === selectedAnswer,
+              "bg-purple":
+                (answerStatus === "idle" || answerStatus === "error") &&
+                option === selectedAnswer,
               "bg-green":
                 answerStatus === "correct" && option === selectedAnswer,
               "bg-red":

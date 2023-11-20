@@ -2,12 +2,14 @@ import React from "react";
 import Button from "./Button";
 import Answer from "./Answer";
 
+import IconIncorrect from "../assets/icon-incorrect.svg";
+
 interface Props {
   options: string[];
-  answerStatus: "idle" | "correct" | "incorrect";
+  answerStatus: "idle" | "correct" | "incorrect" | "error";
   correctAnswer: string;
   nextQuestion: () => void;
-  handleResponse: (response: string) => void;
+  handleResponse: (response: string | null) => void;
   quizStatus: "playing" | "over";
 }
 
@@ -27,16 +29,18 @@ export default function AnswerList({
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (answerStatus !== "idle") {
-      nextQuestion();
-    } else if (selectedAnswer) {
+    if (answerStatus === "idle" || answerStatus === "error") {
       handleResponse(selectedAnswer);
+    } else {
+      nextQuestion();
+      setSelectedAnswer(null);
     }
   }
 
   function handleAnswerChange(answer: string) {
     setSelectedAnswer(answer);
   }
+
   return (
     <form onSubmit={handleSubmit}>
       <ul className="space-y-3 md:space-y-6">
@@ -52,15 +56,23 @@ export default function AnswerList({
           />
         ))}
       </ul>
-      <div className="mt-3 md:mt-8">
+      <div className="my-3 md:my-8">
         <Button>
-          {answerStatus === "idle"
+          {answerStatus === "idle" || answerStatus === "error"
             ? "Submit Answer"
             : quizStatus === "over"
               ? "Finish Quiz"
               : "Next Question"}
         </Button>
       </div>
+      {answerStatus === "error" && (
+        <div className="flex gap-2 justify-center">
+          <img alt="" className="w-8 h-8 md:h-10 md:w-10" src={IconIncorrect} />
+          <p className="text-lg md:text-2xl text-white">
+            Please select an answer
+          </p>
+        </div>
+      )}
     </form>
   );
 }

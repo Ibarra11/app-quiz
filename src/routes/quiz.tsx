@@ -20,14 +20,18 @@ export default function Quiz() {
   const { questions } = useLoaderData() as Quiz;
   const [questionNumber, setQuestionNumber] = React.useState(0);
   const [answerStatus, setAnswerStatus] = React.useState<
-    "idle" | "incorrect" | "correct"
+    "idle" | "incorrect" | "correct" | "error"
   >("idle");
   const [quizStatus, setQuizStatus] = React.useState<"playing" | "over">(
     "playing"
   );
   const { question, answer, options } = questions[questionNumber];
 
-  function handleResponse(response: string) {
+  function handleResponse(response: string | null) {
+    if (!response) {
+      setAnswerStatus("error");
+      return;
+    }
     if (response === answer) {
       setAnswerStatus("correct");
       setScore(score + 1);
