@@ -1,4 +1,6 @@
 import Button from "./Button";
+import Confetti from "./Confetti";
+
 export default function QuizScore({
   quizId,
   score,
@@ -9,8 +11,10 @@ export default function QuizScore({
   numberOfQuestions: number;
   resetQuiz: () => void;
 }) {
+  const result = Math.round((score / numberOfQuestions) * 100);
   return (
     <div className="flex flex-col gap-10 md:gap-16 lg:flex-row lg:gap-20">
+      {result >= 80 && <Confetti />}
       <h2 className="text-4xl text-white md:text-6xl">
         <span className="font-light">Quiz Completed</span>
         <br />

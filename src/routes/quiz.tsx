@@ -23,7 +23,7 @@ export default function Quiz() {
     "idle" | "incorrect" | "correct" | "error"
   >("idle");
   const [quizStatus, setQuizStatus] = React.useState<"playing" | "over">(
-    "playing"
+    "over"
   );
   const { question, answer, options } = questions[questionNumber];
 
@@ -59,8 +59,8 @@ export default function Quiz() {
   return quizStatus === "over" ? (
     <QuizScore
       quizId={quizId!}
-      score={score}
-      numberOfQuestions={questions.length}
+      score={10}
+      numberOfQuestions={11}
       resetQuiz={resetQuiz}
     />
   ) : (
