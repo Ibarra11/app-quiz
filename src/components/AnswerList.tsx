@@ -24,7 +24,7 @@ export default function AnswerList({
   quizStatus,
 }: Props) {
   const [selectedAnswer, setSelectedAnswer] = React.useState<null | string>(
-    null
+    options[0]
   );
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -47,6 +47,7 @@ export default function AnswerList({
         {options.map((option, i) => (
           <Answer
             key={i}
+            focusOnMount={i === 0}
             option={option}
             selectedAnswer={selectedAnswer}
             answerStatus={answerStatus}

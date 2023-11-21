@@ -2,6 +2,7 @@ import clsx from "clsx";
 
 import IconCorrect from "../assets/icon-correct.svg";
 import IconIncorrect from "../assets/icon-incorrect.svg";
+import React from "react";
 
 const IconStatus = {
   correct: IconCorrect,
@@ -15,6 +16,7 @@ export default function Answer({
   correctAnswer,
   handleAnswerChange,
   letter,
+  focusOnMount,
 }: {
   option: string;
   selectedAnswer: string | null;
@@ -22,7 +24,16 @@ export default function Answer({
   correctAnswer: string;
   handleAnswerChange: (answer: string) => void;
   letter: string;
+  focusOnMount: boolean;
 }) {
+  const ref = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    if (focusOnMount && ref.current) {
+      ref.current.focus();
+    }
+  }, [focusOnMount]);
+
   return (
     <li>
       <label
@@ -41,6 +52,7 @@ export default function Answer({
         )}
       >
         <input
+          ref={ref}
           className="appearance-none absolute inset-0 outline-none focus:ring-0 "
           type="radio"
           name="answer"
@@ -52,6 +64,7 @@ export default function Answer({
             }
           }}
           onFocus={(e) => {
+            e.stopPropagation();
             if (answerStatus === "idle" || answerStatus === "error") {
               handleAnswerChange(e.target.value);
             }
