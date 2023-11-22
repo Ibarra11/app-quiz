@@ -21,20 +21,20 @@ export default function QuizScore({
         <span className="font-medium">You Scored ...</span>
       </h2>
       <div className="space-y-4 lg:flex-1">
-        <div className="bg-navy-200 p-8 space-y-5 rounded-xl md:p-12">
-          <div className="flex gap-4 justify-center items-center">
+        <div className="space-y-5 rounded-xl bg-navy-200 p-8 md:p-12">
+          <div className="flex items-center justify-center gap-4">
             <img
               alt=""
               aria-hidden={true}
-              className="block rounded-md h-10 w-10 md:h-14 md:w-14 "
+              className="block h-10 w-10 rounded-md md:h-14 md:w-14 "
               src={`/icon-${quizId.toLowerCase()}.svg`}
             />
-            <h3 className="text-lg text-white font-medium md:text-">
+            <h3 className="md:text- text-lg font-medium text-white">
               {quizId}
             </h3>
           </div>
           <div className="space-y-4 text-center">
-            <p className=" text-7xl text-white font-medium md:text-9xl">
+            <p className=" text-7xl font-medium text-white md:text-9xl">
               {score}
             </p>
             <p className=" text-lg text-light-blue md:text-2xl">

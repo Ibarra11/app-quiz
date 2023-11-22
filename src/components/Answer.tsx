@@ -39,7 +39,7 @@ export default function Answer({
       <label
         aria-label={option}
         className={clsx(
-          `relative flex gap-3 items-center p-3 rounded-xl bg-navy-200 md:gap-8 md:pr-4 lg:py-5 lg:px-6`,
+          `relative flex items-center gap-3 rounded-xl bg-navy-200 p-3 md:gap-8 md:pr-4 lg:px-6 lg:py-5`,
           {
             "outline outline-2 outline-purple":
               (answerStatus === "idle" || answerStatus === "error") &&
@@ -48,12 +48,12 @@ export default function Answer({
               answerStatus === "correct" && option === selectedAnswer,
             " outline outline-2 outline-red":
               answerStatus === "incorrect" && option === selectedAnswer,
-          }
+          },
         )}
       >
         <input
           ref={ref}
-          className="appearance-none absolute inset-0 outline-none focus:ring-0 "
+          className="absolute inset-0 appearance-none outline-none focus:ring-0 "
           type="radio"
           name="answer"
           value={option}
@@ -72,7 +72,7 @@ export default function Answer({
         />
         <div
           className={clsx(
-            "grid place-content-center h-10 w-10 rounded-md mr-3 md:mr-8 md:h-14 md:w-14",
+            "mr-3 grid h-10 w-10 place-content-center rounded-md md:mr-8 md:h-14 md:w-14",
             {
               "bg-light-gray": option !== selectedAnswer,
               "bg-purple":
@@ -82,7 +82,7 @@ export default function Answer({
                 answerStatus === "correct" && option === selectedAnswer,
               "bg-red":
                 answerStatus === "incorrect" && option === selectedAnswer,
-            }
+            },
           )}
         >
           <p
@@ -94,23 +94,23 @@ export default function Answer({
             {letter.toUpperCase()}
           </p>
         </div>
-        <p className="text-lg text-white font-medium md:text-2xl">{option}</p>
+        <p className="text-lg font-medium text-white md:text-2xl">{option}</p>
         {answerStatus === "incorrect" && option === selectedAnswer && (
           <img
-            className="block ml-auto h-6 w-6  md:h-10 md:w-10"
+            className="ml-auto block h-6 w-6  md:h-10 md:w-10"
             src={IconStatus["incorrect"]}
           />
         )}
         {answerStatus === "incorrect" && option === correctAnswer && (
           <img
-            className="block ml-auto h-6 w-6  md:h-10 md:w-10"
+            className="ml-auto block h-6 w-6  md:h-10 md:w-10"
             src={IconStatus["correct"]}
           />
         )}
 
         {answerStatus === "correct" && option === selectedAnswer && (
           <img
-            className="block ml-auto h-6 w-6 md:h-10 md:w-10"
+            className="ml-auto block h-6 w-6 md:h-10 md:w-10"
             src={IconStatus["correct"]}
           />
         )}

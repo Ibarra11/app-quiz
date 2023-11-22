@@ -23,7 +23,7 @@ export default function Quiz() {
     "idle" | "incorrect" | "correct" | "error"
   >("idle");
   const [quizStatus, setQuizStatus] = React.useState<"playing" | "over">(
-    "playing"
+    "playing",
   );
   const { question, answer, options } = questions[questionNumber];
 

@@ -7,11 +7,11 @@ export default function QuizList({ quizList }: QuizList) {
       {quizList.map(({ title, icon }) => (
         <li key={title}>
           <Link
-            className="flex items-center gap-4 p-3 bg-navy-200 rounded-xl lg:p-5"
+            className="flex items-center gap-4 rounded-xl bg-navy-200 p-3 lg:p-5"
             to={`/quiz/${title}`}
           >
             <img
-              className={`block w-10 h-10 md:w-14 md:h-14`}
+              className={`block h-10 w-10 md:h-14 md:w-14`}
               aria-hidden={true}
               src={icon.toLowerCase()}
             />

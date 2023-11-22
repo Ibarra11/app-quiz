@@ -1,10 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       backgroundImage: {
         "mobile-dark": "url(/pattern-background-mobile-dark.svg)",
+        "mobile-light": "url(/pattern-background-mobile-light.svg)",
         "moon-dark": "url(/icon-moon-light.svg)",
         "sun-dark": "url(/icon-sun-light.svg)",
         "moon-light": "url(/icon-moon-dark.svg)",

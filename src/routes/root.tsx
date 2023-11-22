@@ -5,16 +5,16 @@ export default function Root() {
   const params = useParams();
 
   return (
-    <div className="bg-mobile-dark bg-no-repeat h-screen bg-navy-300 ">
-      <div className="min-w-[320px] mx-auto space-y-8 max-w-6xl px-6 py-4 md:space-y-9 md:pt-10 md:px-16 lg:pt-20 lg:space-y-16 lg:px-0">
+    <div className="h-screen bg-light-gray bg-mobile-light bg-no-repeat dark:bg-navy-300 dark:bg-mobile-dark ">
+      <div className="mx-auto min-w-[320px] max-w-6xl space-y-8 px-6 py-4 md:space-y-9 md:px-16 md:pt-10 lg:space-y-16 lg:px-0 lg:pt-20">
         <header className="flex items-center justify-between">
-          <Link to="/" className="flex gap-4 items-center">
+          <Link to="/" className="flex items-center gap-4">
             {params && params.quizId && (
               <>
                 <img
                   alt=""
                   aria-hidden={true}
-                  className="block rounded-md h-10 w-10 lg:h-14 lg:w-14"
+                  className="block h-10 w-10 rounded-md lg:h-14 lg:w-14"
                   src={`/icon-${params.quizId.toLowerCase()}.svg`}
                 />
                 <h1 className="text-lg font-medium text-white md:text-2xl">

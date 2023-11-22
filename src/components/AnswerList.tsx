@@ -24,7 +24,7 @@ export default function AnswerList({
   quizStatus,
 }: Props) {
   const [selectedAnswer, setSelectedAnswer] = React.useState<null | string>(
-    options[0]
+    options[0],
   );
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -67,9 +67,9 @@ export default function AnswerList({
         </Button>
       </div>
       {answerStatus === "error" && (
-        <div className="flex gap-2 justify-center">
-          <img alt="" className="w-8 h-8 md:h-10 md:w-10" src={IconIncorrect} />
-          <p className="text-lg md:text-2xl text-white">
+        <div className="flex justify-center gap-2">
+          <img alt="" className="h-8 w-8 md:h-10 md:w-10" src={IconIncorrect} />
+          <p className="text-lg text-white md:text-2xl">
             Please select an answer
           </p>
         </div>
