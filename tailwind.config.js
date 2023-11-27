@@ -24,6 +24,10 @@ export default {
         green: "hsl(151deg, 70%, 50%)",
         red: "hsl(0deg, 82%, 63%)",
       },
+      dropShadow: {
+        light: "0 16px 40px hsl(220deg 29% 66% / 0.14)",
+        dark: "0 16px 40px hsl(216deg 25% 25% / 0.14)",
+      },
     },
   },
   plugins: [],
