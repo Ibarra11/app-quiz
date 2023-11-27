@@ -8,7 +8,7 @@ export default function CompletionBar({ progress }: { progress: number }) {
         transform: "translateZ(0)",
       }}
       value={progress}
-      className="relative h-4 overflow-hidden rounded-full bg-navy-200 p-1"
+      className="relative h-4 overflow-hidden rounded-full bg-white p-1 dark:bg-navy-200"
     >
       <Progress.Indicator
         className="ease-[cubic-bezier(0.65,  0, 0.35,  1)] h-full rounded-full bg-purple transition-all duration-[660ms]"

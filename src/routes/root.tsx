@@ -17,7 +17,7 @@ export default function Root() {
                   className="block h-10 w-10 rounded-md lg:h-14 lg:w-14"
                   src={`/icon-${params.quizId.toLowerCase()}.svg`}
                 />
-                <h1 className="text-lg font-medium text-white md:text-2xl">
+                <h1 className="text-lg font-medium text-navy-300 dark:text-white md:text-2xl">
                   {params.quizId}
                 </h1>
               </>

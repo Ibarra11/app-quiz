@@ -7,7 +7,7 @@ export default function QuizList({ quizList }: QuizList) {
       {quizList.map(({ title, icon }) => (
         <li key={title}>
           <Link
-            className="flex items-center gap-4 rounded-xl bg-navy-200 p-3 lg:p-5"
+            className="flex items-center gap-4 rounded-xl bg-white p-3 dark:bg-navy-200 lg:p-5"
             to={`/quiz/${title}`}
           >
             <img
@@ -15,7 +15,7 @@ export default function QuizList({ quizList }: QuizList) {
               aria-hidden={true}
               src={icon.toLowerCase()}
             />
-            <h2 className="text-lg font-medium text-white md:text-2xl">
+            <h2 className="text-lg font-medium text-navy-300 dark:text-white md:text-2xl">
               {title}
             </h2>
           </Link>

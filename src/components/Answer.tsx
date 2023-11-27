@@ -39,7 +39,7 @@ export default function Answer({
       <label
         aria-label={option}
         className={clsx(
-          `relative flex items-center gap-3 rounded-xl bg-navy-200 p-3 md:gap-8 md:pr-4 lg:px-6 lg:py-5`,
+          `relative flex items-center gap-3 rounded-xl bg-white p-3 dark:bg-navy-200 md:gap-8 md:pr-4 lg:px-6 lg:py-5`,
           {
             "outline outline-2 outline-purple":
               (answerStatus === "idle" || answerStatus === "error") &&
@@ -94,7 +94,9 @@ export default function Answer({
             {letter.toUpperCase()}
           </p>
         </div>
-        <p className="text-lg font-medium text-white md:text-2xl">{option}</p>
+        <p className="text-lg font-medium text-navy-300 dark:text-white md:text-2xl">
+          {option}
+        </p>
         {answerStatus === "incorrect" && option === selectedAnswer && (
           <img
             className="ml-auto block h-6 w-6  md:h-10 md:w-10"

@@ -12,7 +12,7 @@ export default function ToggleTheme() {
 
   return (
     <div className="flex items-center gap-2">
-      <span className="h-6 w-6 bg-sun-dark bg-cover"></span>
+      <span className="h-6 w-6 bg-sun-light bg-cover dark:bg-sun-dark"></span>
       <Switch.Root
         checked={mode === "dark"}
         onCheckedChange={(e) => {
@@ -26,7 +26,7 @@ export default function ToggleTheme() {
       >
         <Switch.Thumb className="block h-5 w-5 translate-x-1 rounded-full  bg-white transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-[24px]" />
       </Switch.Root>
-      <span className="h-6 w-6 bg-moon-dark bg-cover"></span>
+      <span className="h-6 w-6 bg-moon-light bg-cover dark:bg-moon-dark"></span>
     </div>
   );
 }
