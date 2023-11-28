@@ -11,7 +11,7 @@ export default function CompletionBar({ progress }: { progress: number }) {
       className="relative h-4 overflow-hidden rounded-full bg-white p-1 dark:bg-navy-200"
     >
       <Progress.Indicator
-        className="ease-[cubic-bezier(0.65,  0, 0.35,  1)] h-full rounded-full bg-purple transition-all duration-[660ms]"
+        className="ease-[cubic-bezier(0.65,  0, 0.35,  1)] bg-purple-300 h-full rounded-full transition-all duration-[660ms]"
         style={{ width: `${progress}%` }}
       />
     </Progress.Root>

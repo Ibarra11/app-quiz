@@ -18,7 +18,11 @@ export default {
           200: "hsl(215deg, 27%, 32%)",
           300: "hsl(216deg, 25%, 25%)",
         },
-        purple: "hsl(277deg, 91%, 56%)",
+        purple: {
+          100: "	hsl(278, 100%, 95%)",
+          200: "hsl(277deg, 91%, 80%)",
+          300: "hsl(277deg 91%, 56% )",
+        },
         "light-blue": "hsl(216deg, 47%, 78%)",
         "light-gray": "hsl(220deg, 38%, 97%)",
         green: "hsl(151deg, 70%, 50%)",

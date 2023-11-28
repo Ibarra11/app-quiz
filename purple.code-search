@@ -1,0 +1,57 @@
+# Query: purple
+# ContextLines: 1
+
+9 results - 5 files
+
+tailwind.config.js:
+  19          },
+  20          },
+  21:         purple: {
+  21            100: "	hsl(278, 100%, 95%)",
+  22            100: "	hsl(278, 100%, 95%)",
+
+src/components/Answer.tsx:
+  42            {
+  43            {
+  44:             "outline outline-2 outline-purple-300":
+
+  44                (answerStatus === "idle" || answerStatus === "error") &&
+  45                (answerStatus === "idle" || answerStatus === "error") &&
+
+  75              {
+  76              {
+  77:               "group-hover:bg-purple-200 bg-light-gray":
+
+  77                  option !== selectedAnswer,
+  78                  option !== selectedAnswer,
+  79:               "bg-purple":
+
+  79                  (answerStatus === "idle" || answerStatus === "error") &&
+  80                  (answerStatus === "idle" || answerStatus === "error") &&
+
+  89              className={clsx("text-lg font-medium md:text-2xl ", {
+  90              className={clsx("text-lg font-medium md:text-2xl ", {
+  91:               "text-navy-200 group-hover:text-purple-300":
+  91                  option !== selectedAnswer,
+  92                  option !== selectedAnswer,
+
+src/components/Button.tsx:
+   8      <button
+   9      <button
+  10:       className={`w-full rounded-xl bg-purple-300 py-4 text-lg font-medium text-white ${className}  hover:bg-purple-200 transition-colors md:rounded-3xl md:py-6 md:text-2xl`}
+  10        {...delegated}
+  11        {...delegated}
+
+src/components/CompetionBar.tsx:
+  12        <Progress.Indicator
+  13        <Progress.Indicator
+  14:         className="ease-[cubic-bezier(0.65,  0, 0.35,  1)] h-full rounded-full bg-purple-300 transition-all duration-[660ms]"
+  14          style={{ width: `${progress}%` }}
+  15          style={{ width: `${progress}%` }}
+
+src/components/ToggleTheme.tsx:
+  23          aria-live="polite"
+  24          aria-live="polite"
+  25:         className=" bg-blackA6 relative h-7 w-12 rounded-full bg-purple"
+  25        >
+  26        >

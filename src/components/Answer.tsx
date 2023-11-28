@@ -39,9 +39,9 @@ export default function Answer({
       <label
         aria-label={option}
         className={clsx(
-          `drop-shadow-light dark:drop-shadow-dark relative flex items-center gap-3 rounded-xl bg-white p-3 dark:bg-navy-200 md:gap-8 md:pr-4 lg:px-6 lg:py-5`,
+          ` drop-shadow-light dark:drop-shadow-dark group relative flex items-center gap-3 rounded-xl bg-white p-3 dark:bg-navy-200 md:gap-8 md:pr-4 lg:px-6 lg:py-5`,
           {
-            "outline outline-2 outline-purple":
+            "outline-purple-300 outline outline-2":
               (answerStatus === "idle" || answerStatus === "error") &&
               option === selectedAnswer,
             "outline outline-2 outline-green":
@@ -53,7 +53,7 @@ export default function Answer({
       >
         <input
           ref={ref}
-          className="absolute inset-0 appearance-none outline-none focus:ring-0 "
+          className="absolute inset-0 cursor-pointer appearance-none outline-none focus:ring-0"
           type="radio"
           name="answer"
           value={option}
@@ -72,10 +72,11 @@ export default function Answer({
         />
         <div
           className={clsx(
-            "mr-3 grid h-10 w-10 place-content-center rounded-md md:mr-8 md:h-14 md:w-14",
+            " mr-3 grid h-10 w-10 place-content-center rounded-md md:mr-8 md:h-14 md:w-14",
             {
-              "bg-light-gray": option !== selectedAnswer,
-              "bg-purple":
+              "group-hover:bg-purple-100 bg-light-gray transition-colors":
+                option !== selectedAnswer,
+              "bg-purple-300":
                 (answerStatus === "idle" || answerStatus === "error") &&
                 option === selectedAnswer,
               "bg-green":
@@ -86,10 +87,14 @@ export default function Answer({
           )}
         >
           <p
-            className={clsx("text-lg font-medium md:text-2xl", {
-              "text-navy-200": option !== selectedAnswer,
-              "text-white": option === selectedAnswer,
-            })}
+            className={clsx(
+              "text-lg font-medium transition-colors  md:text-2xl",
+              {
+                "group-hover:text-purple-300 text-navy-200":
+                  option !== selectedAnswer,
+                "text-white": option === selectedAnswer,
+              },
+            )}
           >
             {letter.toUpperCase()}
           </p>
