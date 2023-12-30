@@ -1,0 +1,10 @@
+CREATE TABLE quiz(
+    id  SERIAL PRIMARY KEY,
+    label TEXT UNIQUE
+)
+
+CREATE TABLE score(
+    id  SERIAL PRIMARY KEY,
+    total SMALLINT
+)
+
