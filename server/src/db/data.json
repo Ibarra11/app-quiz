@@ -1,9 +1,8 @@
 {
   "quizzes": [
     {
-      "title": "HTML",
+      "name": "HTML",
       "icon": "/icon-html.svg",
-
       "questions": [
         {
           "question": "What does HTML stand for?",
@@ -13,7 +12,7 @@
             "Hyper Text Markup Language",
             "Hyper Text Markup Leveler"
           ],
-          "answer": "Hyper Text Markup Language"
+          "answer": 2
         },
         {
           "question": "Which of the following is the correct structure for an HTML document?",
@@ -23,12 +22,12 @@
             "<body><head></head><html></html></body>",
             "<html><body></body><head></head></html>"
           ],
-          "answer": "<html><head></head><body></body></html>"
+          "answer": 0
         },
         {
           "question": "Which HTML element is used to define the title of a document?",
           "options": ["<head>", "<title>", "<header>", "<top>"],
-          "answer": "<title>"
+          "answer": 1
         },
         {
           "question": "What is the purpose of the <body> tag in HTML?",
@@ -38,27 +37,27 @@
             "It is used to define the main content of an HTML document.",
             "It specifies the body of the email content in HTML."
           ],
-          "answer": "It contains all the content such as text, images, and links."
+          "answer": 1
         },
         {
           "question": "Which HTML tag is used to create a hyperlink?",
           "options": ["<hyperlink>", "<link>", "<a>", "<href>"],
-          "answer": "<a>"
+          "answer": 2
         },
         {
           "question": "Which tag is used to display images in HTML?",
           "options": ["<img>", "<image>", "<src>", "<pic>"],
-          "answer": "<img>"
+          "answer": 0
         },
         {
           "question": "What attribute is used to provide the path of an image in the <img> tag?",
           "options": ["link", "src", "href", "url"],
-          "answer": "src"
+          "answer": 1
         },
         {
           "question": "Which HTML tag is used to create an unordered list?",
           "options": ["<ul>", "<ol>", "<list>", "<li>"],
-          "answer": "<ul>"
+          "answer": 0
         },
         {
           "question": "What does the <br> tag do?",
@@ -68,7 +67,7 @@
             "It inserts a line break.",
             "It adds a new row in a table."
           ],
-          "answer": "It inserts a line break."
+          "answer": 2
         },
         {
           "question": "In HTML, what does the `fieldset` tag do?",
@@ -78,12 +77,12 @@
             "It automatically validates the fields within a form.",
             "It hides the fields in a form."
           ],
-          "answer": "It is used to group related data in a form."
+          "answer": 0
         }
       ]
     },
     {
-      "title": "CSS",
+      "name": "CSS",
       "icon": "/icon-css.svg",
 
       "questions": [
@@ -95,12 +94,12 @@
             "Cascading Style Sheets",
             "Creative Style Sheets"
           ],
-          "answer": "Cascading Style Sheets"
+          "answer": 2
         },
         {
           "question": "Which HTML attribute is used to define inline styles?",
           "options": ["styles", "style", "class", "font-style"],
-          "answer": "style"
+          "answer": 1
         },
         {
           "question": "How do you insert a comment in a CSS file?",
@@ -110,22 +109,22 @@
             "-- this is a comment --",
             "<!-- this is a comment -->"
           ],
-          "answer": "/* this is a comment */"
+          "answer": 1
         },
         {
           "question": "Which property is used to change the background color of an element?",
           "options": ["color", "bgcolor", "background-color", "background"],
-          "answer": "background-color"
+          "answer": 2
         },
         {
           "question": "How do you apply a style to all <p> elements?",
           "options": ["p { }", ".p { }", "#p { }", "all.p { }"],
-          "answer": "p { }"
+          "answer": 0
         },
         {
           "question": "Which property is used to change the font of an element?",
           "options": ["font-style", "text-style", "font-family", "typeface"],
-          "answer": "font-family"
+          "answer": 2
         },
         {
           "question": "How do you make each word in a text start with a capital letter?",
@@ -135,17 +134,17 @@
             "text-style: capital",
             "font-transform: capitalize"
           ],
-          "answer": "text-transform: capitalize"
+          "answer": 0
         },
         {
           "question": "How do you select an element with the class name 'header'?",
           "options": [".header", "#header", "header", "*header"],
-          "answer": ".header"
+          "answer": 0
         },
         {
           "question": "What is the default value of the 'position' property?",
           "options": ["relative", "fixed", "absolute", "static"],
-          "answer": "static"
+          "answer": 3
         },
         {
           "question": "What is the purpose of the z-index property in CSS?",
@@ -155,12 +154,12 @@
             "To specify the stack order of an element",
             "To create a zoom effect"
           ],
-          "answer": "To specify the stack order of an element"
+          "answer": 2
         }
       ]
     },
     {
-      "title": "Javascript",
+      "name": "Javascript",
       "icon": "/icon-Javascript.svg",
       "questions": [
         {
@@ -171,7 +170,7 @@
             "alert('Hello World');",
             "msgBox('Hello World');"
           ],
-          "answer": "alert('Hello World');"
+          "answer": 2
         },
         {
           "question": "How do you call a function named 'myFunction'?",
@@ -181,12 +180,12 @@
             "myFunction()",
             "execute myFunction()"
           ],
-          "answer": "myFunction()"
+          "answer": 2
         },
         {
           "question": "How to write an IF statement in JavaScript?",
           "options": ["if i = 5 then", "if (i == 5)", "if i == 5", "if i = 5"],
-          "answer": "if (i == 5)"
+          "answer": 1
         },
         {
           "question": "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
@@ -196,7 +195,7 @@
             "if (i != 5)",
             "if i not = 5"
           ],
-          "answer": "if (i != 5)"
+          "answer": 2
         },
         {
           "question": "How does a FOR loop start?",
@@ -206,7 +205,7 @@
             "for (i <= 5; i++)",
             "for (i = 0; i <= 5; i++)"
           ],
-          "answer": "for (i = 0; i <= 5; i++)"
+          "answer": 3
         },
         {
           "question": "How can you add a single-line comment in JavaScript?",
@@ -216,7 +215,7 @@
             "<!--This is a single-line comment-->",
             "/* This is a single-line comment */"
           ],
-          "answer": "//This is a single-line comment"
+          "answer": 2
         },
         {
           "question": "What is the correct way to write a JavaScript array?",
@@ -226,7 +225,7 @@
             "var colors = 'red', 'green', 'blue'",
             "var colors = 1 = ('red'), 2 = ('green'), 3 = ('blue')"
           ],
-          "answer": "var colors = ['red', 'green', 'blue']"
+          "answer": 2
         },
         {
           "question": "How do you find the number with the highest value of x and y?",
@@ -236,12 +235,12 @@
             "Math.max(x, y)",
             "Math.highest(x, y)"
           ],
-          "answer": "Math.max(x, y)"
+          "answer": 2
         },
         {
           "question": "Which operator is used to assign a value to a variable?",
           "options": ["-", "*", "=", "x"],
-          "answer": "="
+          "answer": 2
         },
         {
           "question": "What is the correct way to write a JavaScript object?",
@@ -251,12 +250,12 @@
             "var person = (firstName: 'John', lastName: 'Doe');",
             "var person = (firstName = 'John', lastName = 'Doe');"
           ],
-          "answer": "var person = {firstName: 'John', lastName: 'Doe'};"
+          "answer": 0
         }
       ]
     },
     {
-      "title": "Accessibility",
+      "name": "Accessibility",
       "icon": "/icon-accessibility.svg",
       "questions": [
         {
@@ -267,7 +266,7 @@
             "Web Content Accessibility Goals",
             "Website Compliance and Accessibility Guidelines"
           ],
-          "answer": "Web Content Accessibility Guidelines"
+          "answer": 0
         },
         {
           "question": "Which element is used to provide alternative text for images for screen reader users?",
@@ -277,7 +276,7 @@
             "<description>",
             "<img alt='description'>"
           ],
-          "answer": "<img alt='description'>"
+          "answer": 3
         },
         {
           "question": "What does ARIA stand for in web development?",
@@ -287,7 +286,7 @@
             "Accessible Responsive Internet Applications",
             "Automated Responsive Internet Actions"
           ],
-          "answer": "Accessible Rich Internet Applications"
+          "answer": 0
         },
         {
           "question": "Which of the following is not a principle of the WCAG?",
@@ -297,17 +296,17 @@
             "Operable",
             "Understandable"
           ],
-          "answer": "Dependable"
+          "answer": 1
         },
         {
           "question": "Which of these color contrast ratios defines the minimum WCAG 2.1 Level AA requirement for normal text?",
           "options": ["3:1", "4.5:1", "7:1", "2:1"],
-          "answer": "4.5:1"
+          "answer": 1
         },
         {
           "question": "Which of the following elements is inherently focusable, meaning it can receive focus without a 'tabindex' attribute?",
           "options": ["<div>", "<span>", "<a href='...'>", "<p>"],
-          "answer": "<a href='...'>"
+          "answer": 2
         },
         {
           "question": "What is the purpose of the 'lang' attribute in an HTML page?",
@@ -317,7 +316,7 @@
             "To indicate the language of the page content",
             "To declare a language pack"
           ],
-          "answer": "To indicate the language of the page content"
+          "answer": 2
         },
         {
           "question": "Which guideline ensures that content is accessible by keyboard as well as by mouse?",
@@ -327,7 +326,7 @@
             "Device Independence",
             "Operable Controls"
           ],
-          "answer": "Keyboard Accessible"
+          "answer": 0
         },
         {
           "question": "What is the role of 'skip navigation' links in web accessibility?",
@@ -337,7 +336,7 @@
             "To help users skip unwanted sections like advertisements",
             "To bypass broken links in the navigation"
           ],
-          "answer": "To skip over primary navigation to the main content"
+          "answer": 0
         },
         {
           "question": "Which of these tools can help in checking the accessibility of a website?",
@@ -347,7 +346,7 @@
             "CSS Validator",
             "JavaScript Console"
           ],
-          "answer": "Google Lighthouse"
+          "answer": 1
         }
       ]
     }

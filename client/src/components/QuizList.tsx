@@ -6,7 +6,7 @@ export default function QuizList({ quizList }: QuizList) {
     <ul className="space-y-3 md:space-y-6">
       {quizList.map(({ title, icon }) => (
         <li
-          className="drop-shadow-light dark:drop-shadow-dark rounded-xl  bg-white p-3 dark:bg-navy-200 lg:p-5"
+          className="rounded-xl bg-white p-3  drop-shadow-light dark:bg-navy-200 dark:drop-shadow-dark lg:p-5"
           key={title}
         >
           <Link className="flex items-center gap-4 " to={`/quiz/${title}`}>

@@ -6,9 +6,15 @@ const port = 3000;
 
 app.use(express.static("static"));
 
-app.get("/", (req, res) => {
-  res.send({ message: "hello" });
+app.get("/attempts", async (req, res) => {
+  const result = await db.query({
+    text: "SELECT * FROM quiz_attempts",
+  });
+
+  res.send({ data: result.rows });
 });
+
+app.post("/attempt", async (req, res) => {});
 
 // creates and starts a server for our API on a defined port
 app.listen(port, () => {

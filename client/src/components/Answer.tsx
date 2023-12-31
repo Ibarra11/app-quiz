@@ -39,9 +39,9 @@ export default function Answer({
       <label
         aria-label={option}
         className={clsx(
-          ` drop-shadow-light dark:drop-shadow-dark group relative flex items-center gap-3 rounded-xl bg-white p-3 dark:bg-navy-200 md:gap-8 md:pr-4 lg:px-6 lg:py-5`,
+          ` group relative flex items-center gap-3 rounded-xl bg-white p-3 drop-shadow-light dark:bg-navy-200 dark:drop-shadow-dark md:gap-8 md:pr-4 lg:px-6 lg:py-5`,
           {
-            "outline-purple-300 outline outline-2":
+            "outline outline-2 outline-purple-300":
               (answerStatus === "idle" || answerStatus === "error") &&
               option === selectedAnswer,
             "outline outline-2 outline-green":
@@ -74,7 +74,7 @@ export default function Answer({
           className={clsx(
             " mr-3 grid h-10 w-10 place-content-center rounded-md md:mr-8 md:h-14 md:w-14",
             {
-              "group-hover:bg-purple-100 bg-light-gray transition-colors":
+              "bg-light-gray transition-colors group-hover:bg-purple-100":
                 option !== selectedAnswer,
               "bg-purple-300":
                 (answerStatus === "idle" || answerStatus === "error") &&
@@ -90,7 +90,7 @@ export default function Answer({
             className={clsx(
               "text-lg font-medium transition-colors  md:text-2xl",
               {
-                "group-hover:text-purple-300 text-navy-200":
+                "text-navy-200 group-hover:text-purple-300":
                   option !== selectedAnswer,
                 "text-white": option === selectedAnswer,
               },

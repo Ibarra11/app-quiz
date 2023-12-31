@@ -22,7 +22,7 @@ export default function ToggleTheme() {
         title="Toggles light & dark"
         aria-label="auto"
         aria-live="polite"
-        className=" bg-blackA6 bg-purple-300 relative h-7 w-12 rounded-full"
+        className=" bg-blackA6 relative h-7 w-12 rounded-full bg-purple-300"
       >
         <Switch.Thumb className="block h-5 w-5 translate-x-1 rounded-full  bg-white transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-[24px]" />
       </Switch.Root>

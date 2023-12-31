@@ -1,9 +1,14 @@
 import { Link, Outlet, useParams } from "react-router-dom";
 import ToggleTheme from "../components/ToggleTheme";
+import React from "react";
 
 export default function Root() {
   const params = useParams();
-
+  React.useEffect(() => {
+    fetch("/api/attempts")
+      .then((res) => res.json())
+      .then(console.log);
+  }, []);
   return (
     <div className="h-screen bg-light-gray bg-mobile-light bg-no-repeat dark:bg-navy-300 dark:bg-mobile-dark ">
       <div className="mx-auto min-w-[320px] max-w-6xl space-y-8 px-6 py-4 md:space-y-9 md:px-16 md:pt-10 lg:space-y-16 lg:px-0 lg:pt-20">
