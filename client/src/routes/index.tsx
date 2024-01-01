@@ -1,17 +1,17 @@
 import { useLoaderData } from "react-router-dom";
-import data from "../data.json";
-import QuizList from "../components/QuizList";
+import Quizzes from "../components/Quizzes";
+import type { Quiz } from "../types";
 export async function loader() {
-  const quizList: { title: string; icon: string }[] = data.quizzes.map(
-    ({ title, icon }: { title: string; icon: string }) => ({ title, icon }),
-  );
-  return { quizList };
+  const res = await fetch("/api/quizzes");
+  console.log(res);
+  const { data }: { data: Quiz[] } = await res.json();
+  return { quizzes: data };
 }
 
 export type QuizList = Awaited<ReturnType<typeof loader>>;
 
 export default function Index() {
-  const { quizList } = useLoaderData() as QuizList;
+  const { quizzes } = useLoaderData() as QuizList;
   return (
     <div className="flex flex-col gap-10 md:gap-16 lg:flex-row lg:justify-between">
       <div className="space-y-4  lg:space-y-12">
@@ -25,7 +25,7 @@ export default function Index() {
         </h3>
       </div>
       <div className="lg:w-[456px]">
-        <QuizList quizList={quizList} />
+        <Quizzes quizzes={quizzes} />
       </div>
     </div>
   );
