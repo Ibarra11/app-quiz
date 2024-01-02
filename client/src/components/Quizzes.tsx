@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import { TargetIcon, BarChartIcon } from "@radix-ui/react-icons";
 import { Quiz } from "../types";
 
 export default function Quizzes({ quizzes }: { quizzes: Quiz[] }) {
   return (
     <ul className="space-y-3 md:space-y-6">
-      {quizzes.map(({ quiz_id, quiz_name, icon }) => (
+      {quizzes.map(({ quiz_id, quiz_name, icon, attempts, avg_score }) => (
         <li
           className="rounded-xl bg-white p-3  drop-shadow-light dark:bg-navy-200 dark:drop-shadow-dark lg:p-5"
           key={quiz_id}
@@ -18,6 +19,16 @@ export default function Quizzes({ quizzes }: { quizzes: Quiz[] }) {
             <h2 className="text-lg font-medium text-navy-300 dark:text-white md:text-2xl">
               {quiz_name}
             </h2>
+            <div className="ml-auto flex gap-4 text-white">
+              <div className="flex items-center  gap-2">
+                <TargetIcon width={16} height={16} />
+                <span className="text-sm">{attempts}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <BarChartIcon width={16} height={16} />
+                <span className="text-sm">{avg_score}%</span>
+              </div>
+            </div>
           </Link>
         </li>
       ))}
