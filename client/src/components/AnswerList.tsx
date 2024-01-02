@@ -7,9 +7,9 @@ import IconIncorrect from "../assets/icon-incorrect.svg";
 interface Props {
   options: string[];
   answerStatus: "idle" | "correct" | "incorrect" | "error";
-  correctAnswer: string;
+  correctOption: number;
   nextQuestion: () => void;
-  handleResponse: (response: string | null) => void;
+  handleAnswerSubmission: (response: number | null) => void;
   quizStatus: "playing" | "over";
 }
 
@@ -18,27 +18,25 @@ const CHAR_CODE_FOR_A = "A".charCodeAt(0);
 export default function AnswerList({
   options,
   answerStatus,
-  correctAnswer,
   nextQuestion,
-  handleResponse,
+  handleAnswerSubmission,
   quizStatus,
+  correctOption,
 }: Props) {
-  const [selectedAnswer, setSelectedAnswer] = React.useState<null | string>(
-    options[0],
-  );
+  const [selectedOption, setSelectedOption] = React.useState<number>(0);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (answerStatus === "idle" || answerStatus === "error") {
-      handleResponse(selectedAnswer);
+      handleAnswerSubmission(selectedOption);
     } else {
       nextQuestion();
-      setSelectedAnswer(null);
+      setSelectedOption(0);
     }
   }
 
-  function handleAnswerChange(answer: string) {
-    setSelectedAnswer(answer);
+  function handleOptionChange(answer: number) {
+    setSelectedOption(answer);
   }
 
   return (
@@ -48,11 +46,12 @@ export default function AnswerList({
           <Answer
             key={i}
             focusOnMount={i === 0}
-            option={option}
-            selectedAnswer={selectedAnswer}
+            optionText={option}
+            optionValue={i}
+            correctOption={correctOption}
+            selectedOption={selectedOption}
             answerStatus={answerStatus}
-            correctAnswer={correctAnswer}
-            handleAnswerChange={handleAnswerChange}
+            handleOptionChange={handleOptionChange}
             letter={String.fromCharCode(CHAR_CODE_FOR_A + i)}
           />
         ))}

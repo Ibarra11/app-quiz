@@ -6,7 +6,7 @@ import Root from "./routes/root";
 import Index from "./routes";
 import { loader as indexLoader } from "./routes/index";
 import Quiz from "./routes/quiz";
-// import { loader as quizLoader } from "./routes/quiz";
+import { loader as quizLoader } from "./routes/quiz";
 
 const router = createBrowserRouter([
   {
@@ -14,11 +14,11 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       { index: true, element: <Index />, loader: indexLoader },
-      // {
-      //   path: "/quiz/:quizId",
-      //   element: <Quiz />,
-      //   loader: quizLoader,
-      // },
+      {
+        path: "/quiz/:quizId",
+        element: <Quiz />,
+        loader: quizLoader,
+      },
     ],
   },
 ]);

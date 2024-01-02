@@ -2,16 +2,19 @@ import Button from "./Button";
 import Confetti from "./Confetti";
 
 export default function QuizScore({
-  quizId,
+  quizName,
+  quizIcon,
   score,
   numberOfQuestions,
 }: {
-  quizId: string;
+  quizName: string;
+  quizIcon: string;
   score: number;
   numberOfQuestions: number;
   resetQuiz: () => void;
 }) {
   const result = Math.round((score / numberOfQuestions) * 100);
+
   return (
     <div className="flex flex-col gap-10 md:gap-16 lg:flex-row lg:gap-20">
       {result >= 80 && <Confetti />}
@@ -27,10 +30,10 @@ export default function QuizScore({
               alt=""
               aria-hidden={true}
               className="block h-10 w-10 rounded-md md:h-14 md:w-14 "
-              src={`/icon-${quizId.toLowerCase()}.svg`}
+              src={quizIcon}
             />
             <h3 className="md:text- text-lg font-medium text-navy-300 dark:text-white">
-              {quizId}
+              {quizName}
             </h3>
           </div>
           <div className="space-y-4 text-center">

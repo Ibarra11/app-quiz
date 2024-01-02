@@ -10,44 +10,45 @@ const IconStatus = {
 } as const;
 
 export default function Answer({
-  option,
-  selectedAnswer,
+  optionText,
   answerStatus,
-  correctAnswer,
-  handleAnswerChange,
+  handleOptionChange,
   letter,
   focusOnMount,
+  optionValue,
+  correctOption,
+  selectedOption,
 }: {
-  option: string;
-  selectedAnswer: string | null;
+  optionText: string;
   answerStatus: "idle" | "correct" | "incorrect" | "error";
-  correctAnswer: string;
-  handleAnswerChange: (answer: string) => void;
+  optionValue: number;
+  correctOption: number;
+  selectedOption: number | null;
+  handleOptionChange: (answer: number) => void;
   letter: string;
   focusOnMount: boolean;
 }) {
   const ref = React.useRef<HTMLInputElement>(null);
-
   React.useEffect(() => {
     if (focusOnMount && ref.current) {
       ref.current.focus();
     }
   }, [focusOnMount]);
 
+  const isSelected = optionValue === selectedOption;
   return (
     <li>
       <label
-        aria-label={option}
+        aria-label={optionText}
         className={clsx(
           ` group relative flex items-center gap-3 rounded-xl bg-white p-3 drop-shadow-light dark:bg-navy-200 dark:drop-shadow-dark md:gap-8 md:pr-4 lg:px-6 lg:py-5`,
           {
             "outline outline-2 outline-purple-300":
-              (answerStatus === "idle" || answerStatus === "error") &&
-              option === selectedAnswer,
+              answerStatus === "idle" && isSelected,
             "outline outline-2 outline-green":
-              answerStatus === "correct" && option === selectedAnswer,
+              answerStatus === "correct" && isSelected,
             " outline outline-2 outline-red":
-              answerStatus === "incorrect" && option === selectedAnswer,
+              answerStatus === "incorrect" && isSelected,
           },
         )}
       >
@@ -56,33 +57,23 @@ export default function Answer({
           className="absolute inset-0 cursor-pointer appearance-none outline-none focus:ring-0"
           type="radio"
           name="answer"
-          value={option}
-          checked={selectedAnswer === option}
-          onChange={(e) => {
-            if (answerStatus === "idle" || answerStatus === "error") {
-              handleAnswerChange(e.target.value);
-            }
-          }}
-          onFocus={(e) => {
-            e.stopPropagation();
-            if (answerStatus === "idle" || answerStatus === "error") {
-              handleAnswerChange(e.target.value);
+          value={optionText}
+          checked={isSelected}
+          onChange={() => {
+            if (answerStatus === "idle") {
+              handleOptionChange(optionValue);
             }
           }}
         />
         <div
           className={clsx(
-            " mr-3 grid h-10 w-10 place-content-center rounded-md md:mr-8 md:h-14 md:w-14",
+            "mr-3 grid h-10 w-10 shrink-0 place-content-center rounded-md md:mr-8 md:h-14 md:w-14",
             {
               "bg-light-gray transition-colors group-hover:bg-purple-100":
-                option !== selectedAnswer,
-              "bg-purple-300":
-                (answerStatus === "idle" || answerStatus === "error") &&
-                option === selectedAnswer,
-              "bg-green":
-                answerStatus === "correct" && option === selectedAnswer,
-              "bg-red":
-                answerStatus === "incorrect" && option === selectedAnswer,
+                !isSelected,
+              "bg-purple-300": answerStatus === "idle" && isSelected,
+              "bg-green": answerStatus === "correct" && isSelected,
+              "bg-red": answerStatus === "incorrect" && isSelected,
             },
           )}
         >
@@ -90,9 +81,8 @@ export default function Answer({
             className={clsx(
               "text-lg font-medium transition-colors  md:text-2xl",
               {
-                "text-navy-200 group-hover:text-purple-300":
-                  option !== selectedAnswer,
-                "text-white": option === selectedAnswer,
+                "text-navy-200 group-hover:text-purple-300": !isSelected,
+                "text-white": isSelected,
               },
             )}
           >
@@ -100,22 +90,23 @@ export default function Answer({
           </p>
         </div>
         <p className="text-lg font-medium text-navy-300 dark:text-white md:text-2xl">
-          {option}
+          {optionText}
         </p>
-        {answerStatus === "incorrect" && option === selectedAnswer && (
-          <img
-            className="ml-auto block h-6 w-6  md:h-10 md:w-10"
-            src={IconStatus["incorrect"]}
-          />
-        )}
-        {answerStatus === "incorrect" && option === correctAnswer && (
+        {/* When the answer is incorrect display the correct option icon */}
+        {answerStatus === "incorrect" && optionValue === correctOption && (
           <img
             className="ml-auto block h-6 w-6  md:h-10 md:w-10"
             src={IconStatus["correct"]}
           />
         )}
+        {answerStatus === "incorrect" && isSelected && (
+          <img
+            className="ml-auto block h-6 w-6  md:h-10 md:w-10"
+            src={IconStatus["incorrect"]}
+          />
+        )}
 
-        {answerStatus === "correct" && option === selectedAnswer && (
+        {answerStatus === "correct" && isSelected && (
           <img
             className="ml-auto block h-6 w-6 md:h-10 md:w-10"
             src={IconStatus["correct"]}
