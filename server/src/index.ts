@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-app.get("/quiz", async (req, res) => {
+app.get("/api/quiz", async (req, res) => {
   const result = await db.query({
     text: `
       SELECT
@@ -30,7 +30,7 @@ app.get("/quiz", async (req, res) => {
   res.send({ data: result.rows });
 });
 
-app.get("/quiz/:id", async (req, res) => {
+app.get("/api/quiz/:id", async (req, res) => {
   const result = await db.query({
     text: "SELECT * FROM quizzes WHERE quiz_id = ($1)",
     values: [req.params.id],
@@ -38,7 +38,7 @@ app.get("/quiz/:id", async (req, res) => {
   res.send({ data: result.rows[0] });
 });
 
-app.get("/quiz/:id/questions", async (req, res) => {
+app.get("/api/quiz/:id/questions", async (req, res) => {
   const result = await db.query({
     text: "SELECT * FROM questions WHERE quiz_id = ($1)",
     values: [req.params.id],
@@ -54,7 +54,7 @@ app.get("/attempts", async (req, res) => {
   res.send({ data: result.rows });
 });
 
-app.post("/attempt", async (req, res) => {
+app.post("/api/attempt", async (req, res) => {
   const { quizId, score } = req.body;
   await db.query({
     text: `
