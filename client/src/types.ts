@@ -13,9 +13,3 @@ export interface Question {
   options: string[];
   correct_option: number;
 }
-
-interface Quiz_Attempts {
-  attempt_id: number;
-  quiz_id: number;
-  score: number;
-}
