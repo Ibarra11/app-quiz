@@ -10,7 +10,9 @@ export async function loader({ params }: { params: Params<"quizId"> }) {
   const resQuestions = fetch(
     `${import.meta.env.VITE_API_URL}/api/quiz/${params.quizId}/questions`,
   ).then((res) => res.json());
-  const resQuiz = fetch(`/api/quiz/${params.quizId}`).then((res) => res.json());
+  const resQuiz = fetch(
+    `${import.meta.env.VITE_API_URL}/api/quiz/${params.quizId}`,
+  ).then((res) => res.json());
   const [{ data: questions }, { data: quiz }] = await Promise.all<
     [Promise<{ data: T_Question[] }>, Promise<{ data: T_Quiz }>]
   >([resQuestions, resQuiz]);
