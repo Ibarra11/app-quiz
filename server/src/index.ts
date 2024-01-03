@@ -64,7 +64,6 @@ app.post("/attempt", async (req, res) => {
 
   res.status(200).json({ message: "Score recorded successfully" });
 });
-console.log(process.env);
 
 // creates and starts a server for our API on a defined port
 app.listen(process.env.PORT, () => {
