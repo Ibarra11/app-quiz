@@ -7,9 +7,9 @@ import type { Question as T_Question, Quiz as T_Quiz } from "../types";
 import Header from "../components/Header";
 
 export async function loader({ params }: { params: Params<"quizId"> }) {
-  const resQuestions = fetch(`/api/quiz/${params.quizId}/questions`).then(
-    (res) => res.json(),
-  );
+  const resQuestions = fetch(
+    `${import.meta.env.VITE_API_URL}/quiz/${params.quizId}/questions`,
+  ).then((res) => res.json());
   const resQuiz = fetch(`/api/quiz/${params.quizId}`).then((res) => res.json());
   const [{ data: questions }, { data: quiz }] = await Promise.all<
     [Promise<{ data: T_Question[] }>, Promise<{ data: T_Quiz }>]
@@ -37,8 +37,7 @@ export default function Quiz() {
     if (quizStatus === "over") {
       const result = Math.round((score / questions.length) * 100);
       async function runEffect() {
-        console.log("test");
-        const res = await fetch("/api/attempt", {
+        await fetch(`${import.meta.env.VITE_API_URL}/attempt`, {
           method: "POST",
           body: JSON.stringify({ quizId: quiz.quiz_id, score: result }),
           headers: new Headers({ "content-type": "application/json" }),

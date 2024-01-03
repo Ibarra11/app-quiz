@@ -3,7 +3,7 @@ import Quizzes from "../components/Quizzes";
 import type { Quiz } from "../types";
 import Header from "../components/Header";
 export async function loader() {
-  const res = await fetch("/api/quiz");
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/quiz`);
   const { data }: { data: Quiz[] } = await res.json();
   return { quizzes: data };
 }
