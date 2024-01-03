@@ -160,7 +160,7 @@
     },
     {
       "name": "Javascript",
-      "icon": "/icon-Javascript.svg",
+      "icon": "/icon-javascript.svg",
       "questions": [
         {
           "question": "Which syntax is correct to output 'Hello World' in an alert box?",

@@ -10,5 +10,5 @@
     "strict": true
   },
 
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "../client/types.ts"]
 }

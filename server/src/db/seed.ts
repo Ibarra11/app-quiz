@@ -68,7 +68,6 @@ async function seedDatabase() {
         .reduce((acc, curr) => acc + curr),
       4
     );
-    console.log(questionsPlaceholders);
     const questionsValues = insertIntoQuizzesTableQuery.rows.reduce(
       (acc, row) => {
         const quiz = data.quizzes.find((quiz) => quiz.name === row.quiz_name)!;
@@ -84,9 +83,6 @@ async function seedDatabase() {
       },
       [] as any
     );
-
-    console.log(questionsValues);
-
     await client.query(
       `
         INSERT INTO questions (quiz_id, question_text, options, correct_option) 

@@ -1,0 +1,12 @@
+{
+  "services": [
+    {
+      "name": "client",
+      "type": "static-build",
+      "command": "npm run build",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  ]
+}
