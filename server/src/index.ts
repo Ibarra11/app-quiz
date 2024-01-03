@@ -1,16 +1,23 @@
 import "dotenv/config";
 import cors from "cors";
-import express from "express";
-import bodyParser from "body-parser";
+import express, { RequestHandler } from "express";
 import * as db from "./db/index.js";
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
-app.get("/api/quiz", async (req, res) => {
-  const result = await db.query({
-    text: `
+// Fallback Middleware function for returning
+// 404 error for undefined paths
+const invalidPathHandler: RequestHandler = (request, response, next) => {
+  response.status(404);
+  response.send("invalid path");
+};
+
+app.get("/api/quiz", async (req, res, next) => {
+  try {
+    const result = await db.query({
+      text: `
       SELECT
     q.quiz_id,
     q.quiz_name,
@@ -26,8 +33,11 @@ app.get("/api/quiz", async (req, res) => {
     ORDER BY
         q.quiz_id;
     `,
-  });
-  res.send({ data: result.rows });
+    });
+    res.send({ data: result.rows });
+  } catch (e) {
+    next(e);
+  }
 });
 
 app.get("/api/quiz/:id", async (req, res) => {
@@ -66,6 +76,8 @@ app.post("/api/attempt", async (req, res) => {
 
   res.status(200).json({ message: "Score recorded successfully" });
 });
+
+app.use(invalidPathHandler);
 
 // creates and starts a server for our API on a defined port
 app.listen(process.env.PORT, () => {
