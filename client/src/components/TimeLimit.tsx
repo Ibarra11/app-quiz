@@ -36,13 +36,13 @@ export default function TimeLimit({
   }, [answerStatus, time, cb]);
 
   return (
-    <div className="relative flex items-center gap-1 text-slate-300">
+    <div className="relative flex items-center pr-6 text-slate-300">
       <div>
         <TimerIcon aria-hidden="true" width={16} height={16} />
         <span className="sr-only">Clock Icon</span>
       </div>
 
-      <time className="  text-base">{time}</time>
+      <time className="absolute right-0 text-base">{time}</time>
     </div>
   );
 }
