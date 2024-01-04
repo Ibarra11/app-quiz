@@ -3,42 +3,40 @@ import Button from "./Button";
 import Answer from "./Answer";
 
 import IconIncorrect from "../assets/icon-incorrect.svg";
+import { AnswerStatus } from "../types";
 
 interface Props {
+  selectedOption: number;
   options: string[];
-  answerStatus: "idle" | "correct" | "incorrect" | "error";
+  answerStatus: AnswerStatus;
   correctOption: number;
   nextQuestion: () => void;
   handleAnswerSubmission: (response: number | null) => void;
+  handleOptionChange: (option: number) => void;
   quizStatus: "playing" | "over";
 }
 
 const CHAR_CODE_FOR_A = "A".charCodeAt(0);
 
 export default function AnswerList({
+  selectedOption,
   options,
   answerStatus,
   nextQuestion,
   handleAnswerSubmission,
+  handleOptionChange,
   quizStatus,
   correctOption,
 }: Props) {
-  const [selectedOption, setSelectedOption] = React.useState<number>(0);
-
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (answerStatus === "idle" || answerStatus === "error") {
       handleAnswerSubmission(selectedOption);
     } else {
       nextQuestion();
-      setSelectedOption(0);
+      handleOptionChange(0);
     }
   }
-
-  function handleOptionChange(answer: number) {
-    setSelectedOption(answer);
-  }
-
   return (
     <form onSubmit={handleSubmit}>
       <ul className="space-y-3 md:space-y-6">

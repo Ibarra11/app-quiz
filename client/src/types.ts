@@ -13,3 +13,5 @@ export interface Question {
   options: string[];
   correct_option: number;
 }
+
+export type AnswerStatus = "idle" | "correct" | "incorrect" | "error";

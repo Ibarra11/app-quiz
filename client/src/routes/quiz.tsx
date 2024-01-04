@@ -3,7 +3,11 @@ import React from "react";
 import Question from "../components/Question";
 import QuizScore from "../components/QuizScore";
 import AnswerList from "../components/AnswerList";
-import type { Question as T_Question, Quiz as T_Quiz } from "../types";
+import type {
+  AnswerStatus,
+  Question as T_Question,
+  Quiz as T_Quiz,
+} from "../types";
 import Header from "../components/Header";
 
 export async function loader({ params }: { params: Params<"quizId"> }) {
@@ -28,9 +32,8 @@ export default function Quiz() {
   const [score, setScore] = React.useState(0);
   const { quiz, questions } = useLoaderData() as Quiz;
   const [questionNumber, setQuestionNumber] = React.useState(0);
-  const [answerStatus, setAnswerStatus] = React.useState<
-    "idle" | "incorrect" | "correct" | "error"
-  >("idle");
+  const [selectedOption, setSelectedOption] = React.useState<number>(0);
+  const [answerStatus, setAnswerStatus] = React.useState<AnswerStatus>("idle");
   const [quizStatus, setQuizStatus] = React.useState<"playing" | "over">(
     "playing",
   );
@@ -49,7 +52,8 @@ export default function Quiz() {
     }
   }, [quizStatus]);
 
-  const { question_text, options, correct_option } = questions[questionNumber];
+  const { question_text, options, correct_option, question_id } =
+    questions[questionNumber];
 
   function handleAnswerSubmission(response: number | null) {
     if (response === correct_option) {
@@ -60,6 +64,13 @@ export default function Quiz() {
     }
   }
 
+  function handleOptionChange(answer: number) {
+    setSelectedOption(answer);
+  }
+
+  function handleTimeLimit() {
+    handleAnswerSubmission(selectedOption);
+  }
   function nextQuestion() {
     if (questionNumber < questions.length - 1) {
       setQuestionNumber(questionNumber + 1);
@@ -99,11 +110,16 @@ export default function Quiz() {
         />
       ) : (
         <Question
+          key={question_id}
           numberOfQuestions={questions.length}
           questionNumber={questionNumber + 1}
           question={question_text}
+          handleTimeLimit={handleTimeLimit}
+          answerStatus={answerStatus}
         >
           <AnswerList
+            selectedOption={selectedOption}
+            handleOptionChange={handleOptionChange}
             handleAnswerSubmission={handleAnswerSubmission}
             nextQuestion={nextQuestion}
             correctOption={correct_option}

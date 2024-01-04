@@ -21,11 +21,19 @@ export default function Quizzes({ quizzes }: { quizzes: Quiz[] }) {
             </h2>
             <div className="ml-auto flex gap-4 text-white">
               <div className="flex items-center  gap-2">
-                <TargetIcon width={16} height={16} />
+                <div>
+                  <TargetIcon aria-hidden="true" width={16} height={16} />
+                  <span className="sr-only">Quiz Attempts Icon</span>
+                </div>
+
                 <span className="text-sm">{attempts}</span>
               </div>
               <div className="flex items-center gap-2">
-                <BarChartIcon width={16} height={16} />
+                <div>
+                  <BarChartIcon aria-hidden="true" width={16} height={16} />
+                  <span className="sr-only">Average Score Icon</span>
+                </div>
+
                 <span className="text-sm">{avg_score}%</span>
               </div>
             </div>
