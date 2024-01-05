@@ -13,7 +13,7 @@ interface Props {
   nextQuestion: () => void;
   handleAnswerSubmission: (response: number | null) => void;
   handleOptionChange: (option: number) => void;
-  quizStatus: "playing" | "over";
+  lastQuestion: boolean;
 }
 
 const CHAR_CODE_FOR_A = "A".charCodeAt(0);
@@ -25,18 +25,19 @@ export default function AnswerList({
   nextQuestion,
   handleAnswerSubmission,
   handleOptionChange,
-  quizStatus,
   correctOption,
+  lastQuestion,
 }: Props) {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (answerStatus === "idle" || answerStatus === "error") {
+    if (answerStatus === "idle") {
       handleAnswerSubmission(selectedOption);
     } else {
       nextQuestion();
       handleOptionChange(0);
     }
   }
+
   return (
     <form onSubmit={handleSubmit}>
       <ul className="space-y-3 md:space-y-6">
@@ -56,9 +57,9 @@ export default function AnswerList({
       </ul>
       <div className="mt-3 md:mt-8">
         <Button>
-          {answerStatus === "idle" || answerStatus === "error"
+          {answerStatus === "idle"
             ? "Submit Answer"
-            : quizStatus === "over"
+            : lastQuestion
               ? "Finish Quiz"
               : "Next Question"}
         </Button>

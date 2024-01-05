@@ -137,7 +137,7 @@ export default function Quiz() {
             correctOption={correct_option}
             options={options}
             answerStatus={answerStatus}
-            quizStatus={quizStatus}
+            lastQuestion={questionNumber === questions.length - 1}
           />
         </Question>
       )}
