@@ -9,6 +9,7 @@ export function getInitialColorMode(): "dark" | "light" {
   // If they haven't been explicit, let's check the media
   // query
   const mql = window.matchMedia("(prefers-color-scheme: dark)");
+
   const hasMediaQueryPreference = typeof mql.matches === "boolean";
   if (hasMediaQueryPreference) {
     return mql.matches ? "dark" : "light";

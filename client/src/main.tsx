@@ -7,11 +7,14 @@ import Index from "./routes";
 import { loader as indexLoader } from "./routes/index";
 import Quiz from "./routes/quiz";
 import { loader as quizLoader } from "./routes/quiz";
+import NotFound from "./components/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <NotFound />,
+
     children: [
       { index: true, element: <Index />, loader: indexLoader },
       {
