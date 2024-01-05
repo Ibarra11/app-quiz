@@ -1,4 +1,5 @@
 import { useLoaderData, type Params, Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import React from "react";
 import Question from "../components/Question";
 import QuizScore from "../components/QuizScore";
@@ -95,6 +96,10 @@ export default function Quiz() {
   }
   return (
     <>
+      <Helmet>
+        <title>Frontend Quiz | {quiz.quiz_name}</title>
+        <link rel="icon" type="image/png" href={quiz.icon} sizes="16x16" />
+      </Helmet>
       <Header>
         <Link to="/" className="flex items-center gap-4">
           <img

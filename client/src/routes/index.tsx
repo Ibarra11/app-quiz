@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import Quizzes from "../components/Quizzes";
 import type { Quiz } from "../types";
 import Header from "../components/Header";
@@ -14,6 +15,10 @@ export default function Index() {
   const { quizzes } = useLoaderData() as QuizList;
   return (
     <>
+      <Helmet>
+        <title>Frontend Quiz</title>
+        <link rel="icon" type="image/png" href={"/favicon.ico"} sizes="16x16" />
+      </Helmet>
       <Header />
       <main className="flex flex-col gap-10 md:gap-16 lg:flex-row lg:justify-between">
         <div className="space-y-4  lg:space-y-12">

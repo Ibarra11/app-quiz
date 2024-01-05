@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+
 export default function Root() {
   return (
     <div className="h-screen bg-light-gray bg-mobile-light bg-no-repeat dark:bg-navy-300 dark:bg-mobile-dark ">
