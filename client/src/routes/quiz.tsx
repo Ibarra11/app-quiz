@@ -20,6 +20,13 @@ export async function loader({ params }: { params: Params<"quizId"> }) {
   const [{ data: questions }, { data: quiz }] = await Promise.all<
     [Promise<{ data: T_Question[] }>, Promise<{ data: T_Quiz }>]
   >([resQuestions, resQuiz]);
+  // If the quiz does not exist throw an error
+  if (questions.length === 0 || !quiz) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
   return {
     questions,
     quiz,
