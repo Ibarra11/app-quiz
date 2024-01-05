@@ -5,7 +5,6 @@ export default function ToggleTheme() {
   const [mode, setMode] = React.useState<"light" | "dark">(getInitialColorMode);
 
   React.useEffect(() => {
-    console.log(mode);
     window.localStorage.setItem("color-mode", mode);
     document.documentElement.classList.remove(...["dark", "light"]);
     document.documentElement.classList.add(mode);
