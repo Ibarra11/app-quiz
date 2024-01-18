@@ -74,11 +74,12 @@ export async function getQuizQuestions(
 }
 
 export async function createQuizAttempt(
-  req: Request<{}, {}, CreateQuizAttemptInput["body"]>,
+  req: Request<{}, {}, CreateQuizAttemptInput["body"]> & { user: string },
   res: Response,
   next: NextFunction
 ) {
   const { quizId, score } = req.body;
+
   await db.query({
     text: `
           INSERT INTO quiz_attempts (quiz_id, score)
