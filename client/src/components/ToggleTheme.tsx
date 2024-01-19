@@ -18,13 +18,12 @@ export default function ToggleTheme() {
         onCheckedChange={(e) => {
           setMode(e ? "dark" : "light");
         }}
-        defaultChecked
         title="Toggles light & dark"
         aria-label="auto"
         aria-live="polite"
-        className=" bg-blackA6 relative h-7 w-12 rounded-full bg-purple-300"
+        className="relative h-7 w-12 rounded-full bg-purple-500 shadow-inner shadow-black/50 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-400 active:bg-purple-400"
       >
-        <Switch.Thumb className="block h-5 w-5 translate-x-1 rounded-full  bg-white transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-[24px]" />
+        <Switch.Thumb className="block h-5 w-5 translate-x-1 rounded-full bg-white  shadow-sm transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-[24px]" />
       </Switch.Root>
       <span className="h-6 w-6 bg-moon-light bg-cover dark:bg-moon-dark"></span>
     </div>
