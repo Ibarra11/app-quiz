@@ -36,7 +36,7 @@ export default function TimeLimit({
   }, [answerStatus, time, cb]);
 
   return (
-    <div className="relative flex items-center pr-6 text-slate-300">
+    <div className="relative flex items-center pr-6 text-slate-700 dark:text-slate-300">
       <div>
         <TimerIcon aria-hidden="true" width={16} height={16} />
         <span className="sr-only">Clock Icon</span>
