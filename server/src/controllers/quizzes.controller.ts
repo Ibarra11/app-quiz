@@ -4,38 +4,28 @@ import {
   GetQuizInput,
   getQuizQuestionsInput,
 } from "../schema/quizzes.schema.js";
-import * as db from "../db/index.js";
 import { ParamsDictionary } from "express-serve-static-core";
-export async function getQuizzesHandler(
+import {
+  createQuizAttempt,
+  getQuiz,
+  getQuizQuestions,
+  getQuizzesAndAttempts,
+} from "../services/quizzes.service.js";
+export async function getQuizzesAndAttemptsHandler(
   req: Request,
   res: Response,
   next: NextFunction
 ) {
   try {
-    const result = await db.query({
-      text: `
-      SELECT
-    q.quiz_id,
-    q.quiz_name,
-    q.icon,
-    COUNT(qa.attempt_id)::INT AS attempts,
-    COALESCE(ROUND(AVG(score)), 0)::INT as avg_score 
-    FROM
-        quizzes q
-    LEFT JOIN
-        quiz_attempts qa ON q.quiz_id = qa.quiz_id
-    GROUP BY
-        q.quiz_id, q.quiz_name
-    ORDER BY
-        q.quiz_id;
-    `,
-    });
-    res.send({ data: result.rows });
+    const data = await getQuizzesAndAttempts();
+
+    if (!data) {
+      return res.sendStatus(404);
+    }
+
+    return res.send({ data });
   } catch (e) {
-    //   if (e instanceof Error) {
-    //      next(e);
-    //   }
-    //  const error =
+    return res.sendStatus(500);
   }
 }
 
@@ -44,49 +34,47 @@ export async function getQuizHandler(
   res: Response,
   next: NextFunction
 ) {
-  const result = await db.query({
-    text: "SELECT * FROM quizzes WHERE quiz_id = ($1)",
-    values: [req.params.quizId],
-  });
-  // No quiz found
-  if (result.rowCount === 0) {
-    res.sendStatus(404);
-    return;
-  }
+  try {
+    const data = await getQuiz({ quizId: req.params.quizId });
+    if (!data) {
+      return res.sendStatus(404);
+    }
 
-  res.send({ data: result.rows[0] });
+    return res.send({ data });
+  } catch (e) {
+    return res.sendStatus(500);
+  }
 }
 
-export async function getQuizQuestions(
+export async function getQuizQuestionsHandler(
   req: Request<ParamsDictionary & getQuizQuestionsInput["params"]>,
   res: Response,
   next: NextFunction
 ) {
-  const result = await db.query({
-    text: "SELECT * FROM questions WHERE quiz_id = ($1)",
-    values: [req.params.quizId],
-  });
-  if (result.rowCount === 0) {
-    res.sendStatus(404);
-    return;
+  try {
+    const data = await getQuizQuestions({ quizId: req.params.quizId });
+    if (!data) {
+      return res.sendStatus(404);
+    }
+    return res.send({ data });
+  } catch (e) {
+    return res.sendStatus(500);
   }
-  res.send({ data: result.rows });
 }
 
-export async function createQuizAttempt(
-  req: Request<{}, {}, CreateQuizAttemptInput["body"]> & { user: string },
+export async function createQuizAttemptHandler(
+  req: Request<{}, {}, CreateQuizAttemptInput["body"]>,
   res: Response,
   next: NextFunction
 ) {
-  const { quizId, score } = req.body;
-
-  await db.query({
-    text: `
-          INSERT INTO quiz_attempts (quiz_id, score)
-          VALUES($1, $2)
-          `,
-    values: [quizId, score],
-  });
-
-  res.status(200).json({ message: "Score recorded successfully" });
+  try {
+    const { quizId, score } = req.body;
+    const data = await createQuizAttempt({ quizId, score });
+    if (!data) {
+      return res.sendStatus(409);
+    }
+    return res.status(200).json({ message: "Score recorded successfully" });
+  } catch (e) {
+    return res.sendStatus(500);
+  }
 }
